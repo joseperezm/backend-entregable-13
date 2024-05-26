@@ -1,4 +1,6 @@
-# Consigna
+# Documentación API
+
+## Consigna
 
 ✓ Realizar la configuración necesaria para tener documentado tu proyecto final a partir de Swagger.
 
