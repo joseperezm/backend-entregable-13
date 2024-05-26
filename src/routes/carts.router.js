@@ -5,7 +5,7 @@ const redirectIfNotLoggedInApi = require('../middleware/authApi.js');
 const authorizeApi = require('../middleware/authorizeApi.js');
 
 router.post("/carts", redirectIfNotLoggedInApi, cartsController.createCart);
-router.get("/carts", redirectIfNotLoggedInApi, cartsController.getAllCarts);
+router.get("/carts", authorizeApi('admin'), redirectIfNotLoggedInApi, cartsController.getAllCarts);
 router.get("/carts/:cid", redirectIfNotLoggedInApi, cartsController.getCart);
 router.post("/carts/:cid/product/:pid", authorizeApi(['user', 'premium']), redirectIfNotLoggedInApi, cartsController.addToCart);
 router.put("/carts/:cid", authorizeApi(['user', 'premium']), redirectIfNotLoggedInApi, cartsController.updateCartProducts);

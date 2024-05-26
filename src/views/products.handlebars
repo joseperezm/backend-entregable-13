@@ -3,6 +3,11 @@
   {{messages.success}}
 </div>
 {{/if}}
+{{#if messages.error}}
+<div class="alert alert-danger mx-5 text-center" role="alert" id="error-message">
+  {{messages.error}}
+</div>
+{{/if}}
 <h1 class="titulos mt-4">Productos</h1>
 <div class="centrar-botones">
   <div class="btn-group sorting-buttons" role="group" aria-label="Sorting Buttons">
@@ -25,7 +30,7 @@
       <p class="card-text mt-2">Precio: {{this.price}}</p>
       <p class="card-text mt-2">Stock: <span
           class="{{#if this.stock}}text-success{{else}}text-danger{{/if}}">{{this.stock}}</span></p>
-      {{#if (eq ../user.role "user")}}
+      {{#if (or (eq ../user.role "user") (eq ../user.role "premium"))}}
       <div class="quantity-selector">
         <label for="quantity-{{this._id}}"></label>
         <input type="number" class="form-control" id="quantity-{{this._id}}" name="quantity" min="1"

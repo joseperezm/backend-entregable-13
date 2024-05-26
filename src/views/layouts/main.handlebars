@@ -43,8 +43,10 @@
               <li class="nav-item">
                 <a class="nav-link" href="/products">Productos</a>
               </li>
-              {{#if (or (eq user.role "admin") (eq user.role "premium"))}}
+              {{#if (eq user.role "admin")}}
               <div id="admin-flag" style="display: none;"></div>
+              {{/if}}
+              {{#if (or (eq user.role "admin") (eq user.role "premium"))}}
                 <li class="nav-item">
                   <a class="nav-link" href="/realtimeproducts">Inventario</a>
                 </li>

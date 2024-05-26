@@ -21,16 +21,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        alert('Producto añadido al carrito con éxito');
+                        showMessage('Producto añadido al carrito con éxito', 'success');
                     } else {
-                        alert(data.message || 'Error al añadir el producto al carrito');
+                        showMessage(data.message || 'Error al añadir el producto al carrito', 'error');
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert('No se pudo añadir el producto al carrito.');
+                    showMessage('No se pudo añadir el producto al carrito.', 'error');
                 });
             });
         });
     }
 });
+
+const showMessage = (message, type) => {
+    const messageContainer = document.createElement("div");
+    messageContainer.className = `alert alert-${type}`;
+    messageContainer.textContent = message;
+    document.body.appendChild(messageContainer);
+
+    setTimeout(() => {
+        messageContainer.remove();
+    }, 3000);
+}

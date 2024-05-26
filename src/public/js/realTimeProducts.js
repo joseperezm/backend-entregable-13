@@ -2,12 +2,15 @@ const socket = io();
 
 socket.on("products", (data) => {
     renderProducts(data);
-}); 
+});
+
+socket.on("deleteError", (data) => {
+    showMessage(data.message, "error");
+});
 
 const renderProducts = (productos) => {
     const productContainer = document.getElementById("productContainer");
     productContainer.innerHTML = "";
-
 
     productos.forEach(item => {
         const card = document.createElement("div");
@@ -29,13 +32,26 @@ const renderProducts = (productos) => {
         productContainer.appendChild(card);
 
         card.querySelector("button").addEventListener("click", () => {
-            deleteProduct(item._id);
+            const userId = document.getElementById("userId").value;
+            const userRole = document.getElementById("userRole").value;
+            deleteProduct(item._id, userId, userRole);
         });
     });
 }
 
-const deleteProduct = (id) => {
-    socket.emit("deleteProduct", id);
+const deleteProduct = (id, userId, userRole) => {
+    socket.emit("deleteProduct", { id, userId, userRole });
+}
+
+const showMessage = (message, type) => {
+    const messageContainer = document.createElement("div");
+    messageContainer.className = `alert alert-${type}`;
+    messageContainer.textContent = message;
+    document.body.appendChild(messageContainer);
+
+    setTimeout(() => {
+        messageContainer.remove();
+    }, 3000);
 }
 
 document.getElementById("btnSend").addEventListener("click", (event) => {

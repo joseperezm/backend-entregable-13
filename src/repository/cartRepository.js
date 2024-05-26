@@ -32,7 +32,7 @@ class CartRepository {
     
             const product = await Product.findById(productId);
             if (!product) {
-                logger.info('Producto0 no encontrado');
+                logger.info('Producto no encontrado');
                 return { success: false, message: 'Producto no encontrado', cart: null };
             }
     
