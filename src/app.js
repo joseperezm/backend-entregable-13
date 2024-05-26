@@ -34,6 +34,9 @@ app.use(express.json());
 
 app.use(cookieParser());
 
+const { swaggerUiExpress, specs } = require('./config/swagger.js');
+app.use('/apidocs', swaggerUiExpress.serve, swaggerUiExpress.setup(specs));
+
 const oneWeekLogin = 7 * 24 * 60 * 60;
 
 app.use(session({
