@@ -12,7 +12,3 @@
 ✓ Se debe tener documentado el módulo de carrito
 
 ✓ No realizar documentación de sesiones
-
-## Sugerencias
-
-✓ Recuerda que es un proceso de documentación, ¡Hay que ser lo más claros posibles!
